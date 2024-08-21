@@ -5,10 +5,15 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\HomeController;
-;
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/countries/upload-country', [CountryController::class, 'showUploadCountryForm'])->name('countries.upload.country');
+Route::post('/countries/upload-country', [CountryController::class, 'processCountrySqlFile'])->name('countries.upload.country.process');
+
+Route::get('/countries/upload-state', [CountryController::class, 'showUploadStateForm'])->name('countries.upload.state');
+Route::post('/countries/upload-state', [CountryController::class, 'processStateSqlFile'])->name('countries.upload.state.process');
+
+Route::get('/countries/upload-city', [CountryController::class, 'showUploadCityForm'])->name('countries.upload.city');
+Route::post('/countries/upload-city', [CountryController::class, 'processCitySqlFile'])->name('countries.upload.city.process');
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
